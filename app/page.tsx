@@ -1,6 +1,7 @@
 import Navbar from "../src/components/Navbar";
 import Hero from "../src/components/Hero";
 import About from "../src/components/About";
+import Projects from "@/src/components/Projects";
 
 export default function Home() {
   return (
@@ -11,6 +12,8 @@ export default function Home() {
       <Hero />
       {/* About */}
       <About />
+      {/* Projects */}
+      <Projects />
     </main>
   );
 }
