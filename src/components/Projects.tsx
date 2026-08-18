@@ -135,7 +135,7 @@ export default function Projects() {
                     {projects.map((project) => (
                         <article
                             key={project.title}
-                            className="group flex h-full flex-col rounded-2xl border boder-white/10 bg-white/[0.02] p-6 transition duration-300 bover:border-white/20 hover:bg-white/[0.04]"
+                            className="group flex h-full flex-col rounded-2xl border border-white/10 bg-white/[0.02] p-6 transition duration-300 bover:border-white/20 hover:bg-white/[0.04]"
                         >
                             <div className="flex items-center justify-between gap-4">
                                 <p className="text-sm text-gray-500">
