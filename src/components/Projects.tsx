@@ -14,7 +14,10 @@ const projects = [
             "/projects/bigbrew/dashboard.png",
             "/projects/bigbrew/sales.png",
             "/projects/bigbrew/receipt.png",
-        ]
+            "/projects/bigbrew/product-management.png",
+        ],
+
+        github: "https://github.com/costaciowinbertstemargon-spec/POS-bigbrew",
     },
     {
         title: "MatchOClock",
@@ -23,19 +26,34 @@ const projects = [
             "A collaborative scheduling web application that allows users to manage their schedules, view a calendar, connect with friends, receive notifications, and organize personal notes.",
         technologies: ["React", "Node.js", "Express", "CSS"],
         role: "Full-Stack Developer",
+
+        image: [
+            "/projects/matchoclock/signin.png",
+            "/projects/matchoclock/signup.png",
+            "/projects/matchoclock/calendar.png",
+            "/projects/matchoclock/notification.png",
+            "/projects/matchoclock/notes.png",
+            "/projects/matchoclock/profile.png",
+        ],
+
+        github: "https://github.com/costaciowinbertstemargon-spec/matchoclock",
     },
     {
-    title: "Heartbound",
-    category: "2D Platformer Game",
-    description:
-        "A 2D platformer game developed as an academic project. Players navigate through platform-based levels, avoid environmental hazards, manage their health, collect the heart, and reach the next zone while using movement, jumping, pause, and retry mechanics.",
-    technologies: [
-        "Godot",
-        "GDScript",
-        "2D Game Development",
-        "Pixel Art",
-    ],
-    role: "Game Developer",
+        title: "Heartbound",
+        category: "2D Platformer Game",
+        description:
+            "A 2D platformer game developed as an academic project. Players navigate through platform-based levels, avoid environmental hazards, manage their health, collect the heart, and reach the next zone while using movement, jumping, pause, and retry mechanics.",
+        technologies: ["Godot", "GDScript", "2D Game Development", "Pixel Art",],
+        role: "Game Developer",
+
+        image: [
+            "/projects/heartbound/starting.png",
+            "/projects/heartbound/controls.png",
+            "/projects/heartbound/objective.png",
+            "/projects/heartbound/gameover.png",
+        ],
+
+        github: "https://github.com/costaciowinbertstemargon-spec/heartbound",
     },
     {
         title: "Slow Design",
@@ -44,14 +62,37 @@ const projects = [
             "A Japanese real-estate and resort website implemented in WordPress from a detailed Figma design, featuring property listings, property details, relocation information, management services, customer testimonials, FAQs, company information, contact pages, and blog content.",
         technologies: ["WordPress", "Figma", "HTML", "CSS", "JavaScript"],
         role: "WordPress Developer",
+
+        image: [
+            "/projects/slowdesign/home.png",
+            "/projects/slowdesign/slide.png",
+            "/projects/slowdesign/slide2.png",
+            "/projects/slowdesign/testimonials.png",
+            "/projects/slowdesign/management.png",
+            "/projects/slowdesign/experience.png",
+            "/projects/slowdesign/faq.png",
+            "/projects/slowdesign/faq1.png",
+            "/projects/slowdesign/house.png",
+            "/projects/slowdesign/purchase.png",
+            "/projects/slowdesign/company.png",
+            "/projects/slowdesign/property.png",
+            "/projects/slowdesign/villa.png",
+            "/projects/slowdesign/migration.png",
+            "/projects/slowdesign/hirugano.png",
+            "/projects/slowdesign/contact.png",
+        ],
     },
     {
         title: "MedSort",
         category: "Medical Inventory Management System",
         description:
             "A web-based medical inventory management system designed to streamline the tracking and management of medical supplies and equipment.",
-        technologies: ["JavaScript", "Node.js", "Express", "MongoDB"],
-        role: "Full-Stack Developer",
+        technologies: ["React", "Node.js", "Tailwind CSS", "Python", "Express.js", "MySQL", "FastAPI", "Firebase", "Scikit-learn"],
+        role: "Full-Stack Developer & Machine Learning Developer",
+
+        video: "/projects/medsort/Final-Demo-Video (1).mp4",
+
+        github: "https://github.com/costaciowinbertstemargon-spec/medsort",
     },
 ];
 
@@ -63,7 +104,9 @@ type Project = {
     description: string;
     technologies: string[];
     role: string;
+    github?: string;
     image?: string[];
+    video?: string;
 };
 
 export default function Projects() {
@@ -92,7 +135,7 @@ export default function Projects() {
                     {projects.map((project) => (
                         <article
                             key={project.title}
-                            className="group rounded-2xl border boder-white/10 bg-white/[0.02] p-6 transition duration-300 bover:border-white/20 hover:bg-white/[0.04]"
+                            className="group flex h-full flex-col rounded-2xl border boder-white/10 bg-white/[0.02] p-6 transition duration-300 bover:border-white/20 hover:bg-white/[0.04]"
                         >
                             <div className="flex items-center justify-between gap-4">
                                 <p className="text-sm text-gray-500">
@@ -123,15 +166,20 @@ export default function Projects() {
                                     </span>
                                 ))}
                             </div>
+                            
 
                             {/* Project Links */}
-                            <div className="mt-6 flex gap-4">
-                                <a
-                                    href="#"
-                                    className="text-sm font-medium text-white transition hover:text-gray-400"
-                                >
-                                    Github →
-                                </a>
+                            <div className="mt-auto flex gap-4 pt-8">
+                                {project.github && (
+                                    <a
+                                        href={project.github}
+                                        className="text-sm font-medium text-white transition hover:text-gray-400"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        Github →
+                                    </a>
+                                )}
 
                                 <button
                                     onClick={() => setSelectedProject(project)}
@@ -175,6 +223,21 @@ export default function Projects() {
                         <p className="mt-4 leading-relaxed text-gray-600">
                             {selectedProject.description}
                         </p>
+                        {selectedProject.video && (
+                            <div className="mt-4">
+                                <h3 className="text-lg font-semibold">
+                                    Project Video
+                                </h3>
+
+                                <video
+                                    controls
+                                    className="mt-8 w-full rounded-xl border border-white/20 shadow-lg"
+                                >
+                                    <source src={selectedProject.video} type="video/mp4" />
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                        )}
 
                         {/* Screenshots */}
                         {selectedProject.image && (

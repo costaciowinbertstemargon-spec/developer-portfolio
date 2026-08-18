@@ -30,34 +30,39 @@ export default function About() {
               </p>
 
               <p>
-                Throughout my studies, I worked on several projects where I
-                took on significant development responsibilities. I developed
-                a Campus Voting System for our school using HTML, CSS,
-                JavaScript, PHP, and MySQL. I also contributed as a Back-End
-                Developer for a Point-of-Sale (POS) System for a Big Brew
-                branch in Ternate.
+                Throughout my studies, I worked on several projects that helped me develop
+                practical experience across different areas of software development. I
+                started with a Point-of-Sale (POS) System for a Big Brew branch in
+                Ternate, where I worked as a Back-End Developer. I then developed
+                MatchOClock, a full-stack web application focused on schedule management,
+                user profiles, friends, notifications, and personal notes. I also worked
+                on Heartbound, a 2D platformer game developed using Godot, which allowed
+                me to explore game development and programming beyond traditional web
+                applications.
               </p>
 
               <p>
-                My largest project was MedSort, my thesis project, where I
-                worked as the Lead Full-Stack Developer and Machine Learning
-                Developer. The system combines a web-based medical inventory
-                management system with machine learning, using K-Means
-                Clustering and Random Forest Classification to analyze and
+                I also gained practical experience as a freelance WordPress developer
+                through the Slow Design project. I worked on the project for
+                approximately two months, translating a detailed Figma design into a
+                functional WordPress website and handling a significant portion of the
+                coding and implementation.
+              </p>
+
+              <p>
+                My most comprehensive project is MedSort, my thesis project, where I
+                worked as the Lead Full-Stack Developer and Machine Learning Developer.
+                The system combines a web-based medical inventory management system with
+                machine learning, using React, Node.js, Express, Python, FastAPI, MySQL,
+                K-Means Clustering, and Random Forest Classification to analyze and
                 predict medical supply expiration risks.
               </p>
 
               <p>
-                I also gained practical experience as a freelance WordPress
-                developer, where I worked on a project for approximately two
-                months and handled most of the coding and website development.
-              </p>
-
-              <p>
-                I'm currently focused on improving my skills through more
-                hands-on projects and learning how to build applications that
-                are not only functional, but also responsive, maintainable,
-                and useful in solving real-world problems.
+                I'm currently focused on strengthening my skills through more hands-on
+                projects and continuing to improve as a web developer. I'm particularly
+                interested in building applications that are not only functional, but
+                also responsive, maintainable, and useful in solving real-world problems.
               </p>
             </div>
           </div>
