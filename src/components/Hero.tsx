@@ -45,7 +45,7 @@ export default function Hero() {
             </button>
           </div>
 
-          <div className="mt-16 flex items-center gap-6 text-sm text-gray-500">
+          <div className="mt-16 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-gray-500">
             <span>React</span>
             <span>•</span>
             <span>Next.js</span>
