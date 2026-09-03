@@ -81,6 +81,8 @@ const projects = [
             "/projects/slowdesign/hirugano.png",
             "/projects/slowdesign/contact.png",
         ],
+
+        website: "https://slow-design.com/"
     },
     {
         title: "MedSort",
@@ -178,6 +180,17 @@ export default function Projects() {
                                         rel="noopener noreferrer"
                                     >
                                         Github →
+                                    </a>
+                                )}
+
+                                {project.website && (
+                                    <a
+                                        href={project.website}
+                                        className="text-sm font-medium text-white transition hover:text-gray-400"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        Website →
                                     </a>
                                 )}
 
