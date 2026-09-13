@@ -42,3 +42,260 @@ body {
 ::-webkit-scrollbar-thumb:hover {
     background: #555555;
 }
+
+/* =========================================
+   ANIMATED PORTFOLIO BACKGROUND
+========================================= */
+
+.animated-background {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+
+  background: #050505;
+}
+
+/* =========================================
+   GRID
+========================================= */
+
+.background-grid {
+  position: absolute;
+  inset: -100px;
+
+  background-image:
+    linear-gradient(
+      rgba(255, 255, 255, 0.035) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.035) 1px,
+      transparent 1px
+    );
+
+  background-size: 70px 70px;
+
+  animation: gridMove 20s linear infinite;
+
+  will-change: transform;
+}
+
+@keyframes gridMove {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(70px);
+  }
+}
+
+/* =========================================
+   AMBIENT LIGHTS
+========================================= */
+
+.ambient-light {
+  position: absolute;
+
+  width: 500px;
+  height: 500px;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.025);
+
+  filter: blur(120px);
+
+  will-change: transform;
+}
+
+.light-one {
+  top: -200px;
+  left: -150px;
+
+  animation: floatingLightOne 12s ease-in-out infinite;
+}
+
+.light-two {
+  top: 25%;
+  right: -200px;
+
+  animation: floatingLightTwo 16s ease-in-out infinite;
+}
+
+.light-three {
+  bottom: -250px;
+  left: 35%;
+
+  animation: floatingLightThree 20s ease-in-out infinite;
+}
+
+@keyframes floatingLightOne {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate3d(100px, 80px, 0) scale(1.15);
+  }
+}
+
+@keyframes floatingLightTwo {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate3d(-100px, 80px, 0) scale(1.12);
+  }
+}
+
+@keyframes floatingLightThree {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate3d(60px, -80px, 0) scale(1.1);
+  }
+}
+
+/* =========================================
+   MOUSE GLOW
+========================================= */
+
+.mouse-glow {
+  position: absolute;
+
+  width: 450px;
+  height: 450px;
+
+  transform: translate(-50%, -50%);
+
+  border-radius: 50%;
+
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.04) 0%,
+    rgba(255, 255, 255, 0.018) 30%,
+    transparent 70%
+  );
+
+  filter: blur(20px);
+
+  transition:
+    left 1.2s ease-out,
+    top 1.2s ease-out;
+}
+
+/* =========================================
+   PARTICLES
+========================================= */
+
+.particle {
+  position: absolute;
+
+  width: 3px;
+  height: 3px;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.35);
+
+  box-shadow:
+    0 0 10px rgba(255, 255, 255, 0.2),
+    0 0 20px rgba(255, 255, 255, 0.1);
+
+  animation: particleFloat 8s ease-in-out infinite;
+}
+
+.particle-one {
+  left: 12%;
+  top: 20%;
+}
+
+.particle-two {
+  left: 27%;
+  top: 65%;
+  animation-delay: 2s;
+}
+
+.particle-three {
+  left: 50%;
+  top: 25%;
+  animation-delay: 4s;
+}
+
+.particle-four {
+  left: 72%;
+  top: 55%;
+  animation-delay: 1s;
+}
+
+.particle-five {
+  left: 88%;
+  top: 18%;
+  animation-delay: 3s;
+}
+
+.particle-six {
+  left: 82%;
+  top: 78%;
+  animation-delay: 5s;
+}
+
+.particle-seven {
+  left: 42%;
+  top: 82%;
+  animation-delay: 6s;
+}
+
+@keyframes particleFloat {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0.15;
+  }
+
+  50% {
+    transform: translate3d(0, -45px, 0);
+    opacity: 0.8;
+  }
+}
+
+/* =========================================
+   VIGNETTE
+========================================= */
+
+.background-vignette {
+  position: absolute;
+  inset: 0;
+
+  background: radial-gradient(
+    circle at center,
+    transparent 25%,
+    rgba(0, 0, 0, 0.4) 100%
+  );
+}
+
+/* =========================================
+   ACCESSIBILITY
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .background-grid,
+  .ambient-light,
+  .particle {
+    animation: none !important;
+  }
+
+  .mouse-glow {
+    display: none;
+  }
+}

@@ -1,256 +1,363 @@
 "use client";
 
 import { FormEvent, useRef, useState } from "react";
+import {
+  ArrowUpRight,
+  Check,
+  Mail,
+  Send,
+} from "lucide-react";
+import {
+  FaGithub,
+  FaLinkedinIn,
+} from "react-icons/fa";
 
 export default function Contact() {
-    const formRef = useRef<HTMLFormElement>(null);
-    const [submitted, setSubmitted] = useState(false);
-    const [isSubmitting, setIsSubmitting] = useState(false);
+  const formRef = useRef<HTMLFormElement>(null);
 
-    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
+  const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-        if (!formRef.current) return;
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
 
-        setIsSubmitting(true);
+    if (!formRef.current) return;
 
-        const formData = new FormData(formRef.current);
+    setIsSubmitting(true);
 
-        try {
-            const response = await fetch(
-                "https://formspree.io/f/mnpaokyz",
-                {
-                    method: "POST",
-                    body: formData,
-                    headers: {
-                        Accept: "application/json",
-                    },
-                }
-            );
+    const formData = new FormData(formRef.current);
 
-            if (response.ok) {
-                // Clear all form fields
-                formRef.current.reset();
-
-                // Show success message
-                setSubmitted(true);
-            } else {
-                alert("Something went wrong. Please try again.");
-            }
-        } catch (error) {
-            console.error(error);
-            alert("Unable to send your message. Please try again.");
-        } finally {
-            setIsSubmitting(false);
+    try {
+      const response = await fetch(
+        "https://formspree.io/f/mnpaokyz",
+        {
+          method: "POST",
+          body: formData,
+          headers: {
+            Accept: "application/json",
+          },
         }
-    };
+      );
 
-    return (
-        <section
-            id="contact"
-            className="px-6 py-24"
-        >
-            <div className="mx-auto max-w-6xl">
+      if (response.ok) {
+        formRef.current.reset();
+        setSubmitted(true);
+      } else {
+        alert("Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Unable to send your message. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
-                {/* Section Header */}
-                <div className="mb-12">
-                    <div className="mb-3 text-sm font-medium uppercase tracking-[0.3em] text-gray-500">
-                        Get in Touch
-                    </div>
+  return (
+    <section
+      id="contact"
+      className="relative overflow-hidden px-6 py-28 text-white md:px-10 lg:px-16"
+    >
+      {/* Ambient background */}
+      <div className="pointer-events-none absolute left-1/2 top-[20%] h-[600px] w-[800px] -translate-x-1/2 rounded-full bg-white/[0.025] blur-[150px]" />
 
-                    <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-                        Let's Work Together
-                    </h2>
+      <div className="relative mx-auto max-w-7xl">
+        {/* ------------------------------------------------
+            HEADER
+        ------------------------------------------------ */}
+        <div className="mb-20">
+          <div className="mb-6 flex items-center gap-3 text-sm font-medium uppercase tracking-[0.25em] text-white/40">
+            <span className="h-px w-8 bg-white/30" />
+            Get in Touch
+          </div>
 
-                    <p className="mt-4 max-w-2xl text-gray-400">
-                        I'm currently looking for opportunities where I can
-                        apply my skills, gain professional experience, and
-                        continue growing as a developer.
-                    </p>
-                </div>
-
-                {/* Contact Content */}
-                <div className="grid gap-10 md:grid-cols-2">
-
-                    {/* Contact Information */}
-                    <div>
-                        <h3 className="text-xl font-semibold">
-                            Having a project in mind?
-                        </h3>
-
-                        <p className="mt-4 max-w-md leading-relaxed text-gray-400">
-                            Whether you have a project, job opportunity, or
-                            simply want to connect, feel free to reach out.
-                            I'm always interested in learning, building, and
-                            working on new ideas.
-                        </p>
-
-                        {/* Contact Details */}
-                        <div className="mt-6 space-y-5">
-
-                            <div>
-                                <p className="text-sm text-gray-400">
-                                    Email:
-                                </p>
-
-                                <a
-                                    href="https://mail.google.com/mail/?view=cm&fs=1&to=costaciowinbert.stemargon@gmail.com"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="text-sm text-white transition hover:text-gray-400"
-                                >
-                                    costaciowinbert.stemargon@gmail.com →
-                                </a>
-                            </div>
-
-                            <div>
-                                <p className="text-sm text-gray-400">
-                                    GitHub:
-                                </p>
-
-                                <a
-                                    href="https://github.com/costaciowinbertstemargon-spec"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="text-sm text-white transition hover:text-gray-400"
-                                >
-                                    github.com/costaciowinbertstemargon-spec →
-                                </a>
-                            </div>
-
-                            <div>
-                                <p className="text-sm text-gray-400">
-                                    LinkedIn:
-                                </p>
-
-                                <a
-                                    href="https://www.linkedin.com/in/costacio-winbert-5a8b61330"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="text-sm text-white transition hover:text-gray-400"
-                                >
-                                    linkedin.com/in/costacio-winbert-5a8b61330 →
-                                </a>
-                            </div>
-
-                        </div>
-                    </div>
-
-                    {/* Contact Form / Success Message */}
-                    <div>
-
-                        {submitted ? (
-                            <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-8 backdrop-blur-md">
-
-                                <div className="flex h-12 w-12 items-center justify-center rounded-full border border-white/20 text-xl">
-                                    ✓
-                                </div>
-
-                                <h3 className="mt-6 text-2xl font-semibold">
-                                    Message Sent
-                                </h3>
-
-                                <p className="mt-3 leading-relaxed text-gray-400">
-                                    Thank you for reaching out. Your message
-                                    has been successfully sent. I'll get back
-                                    to you as soon as possible.
-                                </p>
-
-                                <button
-                                    type="button"
-                                    onClick={() => setSubmitted(false)}
-                                    className="mt-6 rounded-xl border border-white/20 px-5 py-3 text-sm font-medium text-white transition hover:bg-white hover:text-black"
-                                >
-                                    Send Another Message →
-                                </button>
-
-                            </div>
-                        ) : (
-
-                            <form
-                                ref={formRef}
-                                onSubmit={handleSubmit}
-                                autoComplete="off"
-                                className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 backdrop-blur-md"
-                            >
-
-                                {/* Name */}
-                                <div>
-                                    <label
-                                        htmlFor="name"
-                                        className="text-sm text-gray-400"
-                                    >
-                                        Name
-                                    </label>
-
-                                    <input
-                                        id="name"
-                                        name="name"
-                                        type="text"
-                                        required
-                                        autoComplete="off"
-                                        placeholder="Your name"
-                                        className="mt-2 w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-white outline-none placeholder:text-gray-600 transition focus:border-white/30"
-                                    />
-                                </div>
-
-                                {/* Email */}
-                                <div className="mt-5">
-                                    <label
-                                        htmlFor="email"
-                                        className="text-sm text-gray-400"
-                                    >
-                                        Email
-                                    </label>
-
-                                    <input
-                                        id="email"
-                                        name="email"
-                                        type="email"
-                                        required
-                                        autoComplete="off"
-                                        placeholder="you@example.com"
-                                        className="mt-2 w-full rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-white outline-none placeholder:text-gray-600 transition focus:border-white/30"
-                                    />
-                                </div>
-
-                                {/* Message */}
-                                <div className="mt-5">
-                                    <label
-                                        htmlFor="message"
-                                        className="text-sm text-gray-400"
-                                    >
-                                        Message
-                                    </label>
-
-                                    <textarea
-                                        id="message"
-                                        name="message"
-                                        rows={6}
-                                        required
-                                        placeholder="Tell me about your project or opportunity"
-                                        className="mt-2 w-full resize-none rounded-xl border border-white/10 bg-black/30 px-4 py-3 text-white outline-none placeholder:text-gray-600 transition focus:border-white/30"
-                                    />
-                                </div>
-
-                                {/* Submit */}
-                                <button
-                                    type="submit"
-                                    disabled={isSubmitting}
-                                    className="mt-6 w-full rounded-xl border border-white/20 px-5 py-3 text-sm font-medium text-white transition hover:bg-white hover:text-black disabled:cursor-not-allowed disabled:opacity-50"
-                                >
-                                    {isSubmitting
-                                        ? "Sending..."
-                                        : "Send Message →"}
-                                </button>
-
-                            </form>
-
-                        )}
-
-                    </div>
-                </div>
+          <div className="grid gap-8 lg:grid-cols-12 lg:items-end">
+            <div className="lg:col-span-8">
+              <h2 className="text-5xl font-semibold leading-[0.95] tracking-[-0.05em] sm:text-6xl md:text-7xl lg:text-8xl">
+                Let&apos;s build
+                <br />
+                <span className="text-white/30">something together.</span>
+              </h2>
             </div>
-        </section>
-    );
+
+            <p className="max-w-md text-sm leading-7 text-white/40 lg:col-span-4 lg:pb-2">
+              Whether it&apos;s a project, an opportunity, or simply a
+              conversation about technology, I&apos;d love to hear from you.
+            </p>
+          </div>
+        </div>
+
+        {/* ------------------------------------------------
+            MAIN CONTENT
+        ------------------------------------------------ */}
+        <div className="grid gap-5 lg:grid-cols-12">
+          {/* LEFT — Contact info */}
+          <div className="flex flex-col gap-5 lg:col-span-5">
+            {/* Main contact card */}
+            <div className="relative flex min-h-[420px] flex-col justify-between overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.035] p-8 backdrop-blur-xl md:p-10">
+              {/* Decorative circle */}
+              <div className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full border border-white/[0.04]" />
+
+              <div className="relative">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04]">
+                  <Mail
+                    size={20}
+                    strokeWidth={1.5}
+                    className="text-white/60"
+                  />
+                </div>
+
+                <span className="mt-10 block text-xs uppercase tracking-[0.2em] text-white/25">
+                  Start a conversation
+                </span>
+
+                <h3 className="mt-4 max-w-sm text-3xl font-medium leading-tight tracking-tight">
+                  Have an idea?
+                  <br />
+                  <span className="text-white/35">
+                    Let&apos;s talk about it.
+                  </span>
+                </h3>
+
+                <p className="mt-5 max-w-sm text-sm leading-7 text-white/40">
+                  I&apos;m currently looking for opportunities where I can
+                  contribute, grow professionally, and build meaningful
+                  software.
+                </p>
+              </div>
+
+              <a
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=costaciowinbert.stemargon@gmail.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative mt-10 flex items-center justify-between border-t border-white/10 pt-6"
+              >
+                <div>
+                  <span className="block text-[10px] uppercase tracking-[0.2em] text-white/25">
+                    Email
+                  </span>
+
+                  <span className="mt-2 block text-sm text-white/65 transition-colors group-hover:text-white">
+                    costaciowinbert.stemargon@gmail.com
+                  </span>
+                </div>
+
+                <span className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 transition-all duration-300 group-hover:border-white/30 group-hover:bg-white group-hover:text-black">
+                  <ArrowUpRight size={16} />
+                </span>
+              </a>
+            </div>
+
+            {/* Social links */}
+            <div className="grid grid-cols-2 gap-5">
+              <a
+                href="https://github.com/costaciowinbertstemargon-spec"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group rounded-[1.5rem] border border-white/10 bg-white/[0.025] p-6 transition-all duration-500 hover:-translate-y-1 hover:border-white/20 hover:bg-white/[0.05]"
+              >
+                <div className="flex items-center justify-between">
+                  <FaGithub
+                    size={20}
+                    strokeWidth={1.5}
+                    className="text-white/40 transition-colors group-hover:text-white"
+                  />
+
+                  <ArrowUpRight
+                    size={15}
+                    className="text-white/20 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-white/60"
+                  />
+                </div>
+
+                <p className="mt-8 text-sm font-medium">GitHub</p>
+
+                <p className="mt-1 truncate text-xs text-white/30">
+                  @costaciowinbertstemargon-spec
+                </p>
+              </a>
+
+              <a
+                href="https://www.linkedin.com/in/costacio-winbert-5a8b61330"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group rounded-[1.5rem] border border-white/10 bg-white/[0.025] p-6 transition-all duration-500 hover:-translate-y-1 hover:border-white/20 hover:bg-white/[0.05]"
+              >
+                <div className="flex items-center justify-between">
+                  <FaLinkedinIn
+                    size={20}
+                    strokeWidth={1.5}
+                    className="text-white/40 transition-colors group-hover:text-white"
+                  />
+
+                  <ArrowUpRight
+                    size={15}
+                    className="text-white/20 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-white/60"
+                  />
+                </div>
+
+                <p className="mt-8 text-sm font-medium">LinkedIn</p>
+
+                <p className="mt-1 text-xs text-white/30">
+                  Let&apos;s connect
+                </p>
+              </a>
+            </div>
+          </div>
+
+          {/* RIGHT — Form */}
+          <div className="lg:col-span-7">
+            {submitted ? (
+              <div className="flex h-full min-h-[600px] flex-col items-center justify-center rounded-[2rem] border border-white/10 bg-white/[0.035] p-8 text-center backdrop-blur-xl md:p-12">
+                <div className="flex h-16 w-16 items-center justify-center rounded-full border border-white/15 bg-white text-black">
+                  <Check size={26} strokeWidth={2} />
+                </div>
+
+                <h3 className="mt-8 text-3xl font-semibold tracking-tight md:text-4xl">
+                  Message sent.
+                </h3>
+
+                <p className="mt-4 max-w-md text-sm leading-7 text-white/40">
+                  Thanks for reaching out. Your message has been successfully
+                  sent. I&apos;ll get back to you as soon as possible.
+                </p>
+
+                <button
+                  type="button"
+                  onClick={() => setSubmitted(false)}
+                  className="mt-8 rounded-full border border-white/15 px-6 py-3 text-sm text-white/60 transition-all hover:border-white/30 hover:bg-white hover:text-black"
+                >
+                  Send another message
+                </button>
+              </div>
+            ) : (
+              <form
+                ref={formRef}
+                onSubmit={handleSubmit}
+                autoComplete="off"
+                className="rounded-[2rem] border border-white/10 bg-white/[0.035] p-7 backdrop-blur-xl md:p-10"
+              >
+                {/* Form header */}
+                <div className="mb-10 flex items-start justify-between gap-6">
+                  <div>
+                    <span className="text-xs uppercase tracking-[0.2em] text-white/25">
+                      Contact Form
+                    </span>
+
+                    <h3 className="mt-3 text-2xl font-medium tracking-tight">
+                      Tell me what you&apos;re working on.
+                    </h3>
+                  </div>
+
+                  <span className="hidden text-xs text-white/20 sm:block">
+                    01 / 03
+                  </span>
+                </div>
+
+                {/* Name */}
+                <div>
+                  <label
+                    htmlFor="name"
+                    className="mb-2 block text-xs uppercase tracking-[0.15em] text-white/35"
+                  >
+                    Your Name
+                  </label>
+
+                  <input
+                    id="name"
+                    name="name"
+                    type="text"
+                    required
+                    autoComplete="off"
+                    placeholder="John Doe"
+                    className="w-full border-b border-white/10 bg-transparent px-0 py-4 text-white outline-none placeholder:text-white/15 transition-colors focus:border-white/40"
+                  />
+                </div>
+
+                {/* Email */}
+                <div className="mt-8">
+                  <label
+                    htmlFor="email"
+                    className="mb-2 block text-xs uppercase tracking-[0.15em] text-white/35"
+                  >
+                    Email Address
+                  </label>
+
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    required
+                    autoComplete="off"
+                    placeholder="you@example.com"
+                    className="w-full border-b border-white/10 bg-transparent px-0 py-4 text-white outline-none placeholder:text-white/15 transition-colors focus:border-white/40"
+                  />
+                </div>
+
+                {/* Message */}
+                <div className="mt-8">
+                  <label
+                    htmlFor="message"
+                    className="mb-2 block text-xs uppercase tracking-[0.15em] text-white/35"
+                  >
+                    Message
+                  </label>
+
+                  <textarea
+                    id="message"
+                    name="message"
+                    rows={6}
+                    required
+                    placeholder="Tell me about your project, opportunity, or idea..."
+                    className="w-full resize-none border-b border-white/10 bg-transparent px-0 py-4 text-white outline-none placeholder:text-white/15 transition-colors focus:border-white/40"
+                  />
+                </div>
+
+                {/* Submit */}
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="group mt-10 flex w-full items-center justify-between rounded-2xl bg-white px-6 py-5 text-sm font-medium text-black transition-all duration-300 hover:bg-white/90 disabled:cursor-not-allowed disabled:opacity-50"
+                >
+                  <span>
+                    {isSubmitting ? "Sending message..." : "Send Message"}
+                  </span>
+
+                  <span className="flex h-9 w-9 items-center justify-center rounded-full bg-black text-white transition-transform duration-300 group-hover:translate-x-1">
+                    <Send size={15} />
+                  </span>
+                </button>
+
+                <p className="mt-5 text-center text-[11px] leading-5 text-white/20">
+                  I&apos;ll get back to you as soon as possible.
+                </p>
+              </form>
+            )}
+          </div>
+        </div>
+
+        {/* ------------------------------------------------
+            FOOTER STATEMENT
+        ------------------------------------------------ */}
+        <div className="mt-24 border-t border-white/10 pt-8">
+          <div className="flex flex-col justify-between gap-5 md:flex-row md:items-center">
+            <p className="text-xs uppercase tracking-[0.15em] text-white/20">
+              Winbert C. Costacio · Full-Stack Web Developer
+            </p>
+
+            <a
+              href="#home"
+              className="group inline-flex items-center gap-2 text-xs text-white/30 transition-colors hover:text-white"
+            >
+              Back to top
+
+              <ArrowUpRight
+                size={14}
+                className="transition-transform group-hover:-translate-y-1 group-hover:translate-x-1"
+              />
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 }
