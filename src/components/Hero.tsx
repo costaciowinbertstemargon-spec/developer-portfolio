@@ -7,8 +7,8 @@ export default function Hero() {
 
   return (
     <section className="relative min-h-screen overflow-hidden text-white">
-      {/*   HERO ATMOSPHERE
-*/} {/* Soft spotlight behind heading */}
+      {/*   HERO ATMOSPHERE */} 
+      {/* Soft spotlight behind heading */}
       <div className="hero-heading-glow" />
 
       {/* Very subtle scanning light */}
@@ -20,8 +20,7 @@ export default function Hero() {
 
           <div className="grid items-center gap-16 lg:grid-cols-[1.15fr_.85fr]">
 
-            {/*                 LEFT SIDE
-            */}
+            {/* LEFT SIDE*/}
 
             <div>
 
